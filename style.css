@@ -1,0 +1,142 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap');
+
+/* CSS Variables * CSS reset */
+
+:root {
+  --prim-color: #0f1420;
+  --sec-color: #8bde14;
+  --max-width: 1100px;
+}
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+ }
+
+ /* Base Styles */
+
+ html {
+   font-size: 16px;
+ }
+
+ body {
+   font-family: 'Nunito Sans', sans-serif;
+   font-size: 1.2rem;
+   line-height: 1.5;
+   background: var(--prim-color);
+   color: #fff;
+   /* get rid of any scroll bars */
+   overflow-x: hidden;
+   padding-bottom: 50px;
+ }
+
+ /* Utility Classes */
+
+ .container {
+   max-width: var(--max-width);
+   margin: 0 auto;
+ }
+
+
+ /* Main Header */
+
+ #main-header .container {
+   /* border-bottom: 1px var(--sec-color) solid; */
+   padding: 4rem 0;
+   text-align: center;
+ }
+
+ h1 {
+   font-size: 2.5rem;
+ }
+
+ #main-header i {
+   color: var(--sec-color);
+ }
+
+/* Timeline styles ------ */
+
+#timeline ul {
+  background: var(--prim-color);
+  padding: 50px 0;
+}
+
+/* Create the central vertical line for the 'timeline' */
+#timeline ul li {
+  list-style: none;
+  position: relative;
+  width: 4px;
+  margin: 0 auto;
+  background: var(--sec-color);
+  padding-top: 50px;
+}
+
+/* Create the timeline boxes */
+ #timeline ul li div {
+  position: relative;
+  width: 400px;
+  bottom: 0;
+  padding: 1rem;
+  border: var(--sec-color) 1px solid;
+  border-radius: 5px;
+  /* transition for the box */
+  transition: all 0.5s ease-in-out;
+ }
+
+ /* right side boxes will be odd and left side will be evens */
+
+ /* Right Side Boxes*/
+ #timeline ul li:nth-child(odd) div {
+  left: 40px;
+ }
+
+ /* Left Side Boxes - Box is 400px wide and need 40px padding */
+ #timeline ul li:nth-child(even) div {
+   left: -440px;
+ }
+
+ /* Create the Dots */
+ #timeline ul li:after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  /* Moves the left edge of the dot to the center of the vertical line (li) */
+  left: 50%;
+  bottom: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  /* However much it was moved to the left above - move it back by that much to be central  */
+  transform: translateX(-50%);
+  /* So that the background can change color smoothly - color change done by JS */
+  transition: background 0.5s ease-in-out;
+ }
+
+ /* Arrows Base */
+ #timeline ul li div:before {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  /* Don't need a width or height as we are just manipulating the border */
+  width: 0;
+  height: 0;
+  border-style: solid;
+ }
+
+ /* Creaete Right Side Arrows */
+ #timeline ul li:nth-child(odd) div:before {
+   /* position -16px from the left side of the div box */
+   left: -16px;
+   border-width: 8px 16px 8px 0;
+   border-color: transparent var(--sec-color) transparent transparent;
+ }
+
+ /* Left Side Arrows */
+ #timeline ul li:nth-child(even) div:before {
+   /* -16 px from the right side of the div box */
+   right: -16px;
+   border-width: 8px 0 8px 16px;
+   border-color: transparent transparent transparent var(--sec-color);
+ }
