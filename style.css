@@ -73,7 +73,7 @@
   background: var(--sec-color);
 }
 
-/* Create the timeline boxes */
+/* Create Boxes */
  #timeline ul li div {
   position: relative;
   width: 400px;
@@ -81,27 +81,31 @@
   padding: 1rem;
   border: var(--sec-color) 1px solid;
   border-radius: 5px;
-  /* transition for the box */
-  transition: all 0.5s ease-in-out;
+  /* Boxes start out invisible and transition in over 1s*/
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s ease-in-out;
  }
 
- /* right side boxes will be odd and left side will be evens */
+ /* Right Side Boxes = Odd & Left Side Boxes = Even */
 
- /* Right Side Boxes*/
+ /* Right Side Boxes - move 40px from the li, start position is 300px along X axis */
  #timeline ul li:nth-child(odd) div {
   left: 40px;
+  transform: translate(300px, 0);
  }
 
- /* Left Side Boxes - Box is 400px wide and need 40px padding */
+ /* Left Side Boxes - -40px from the li line, start position is -300px along X axis */
  #timeline ul li:nth-child(even) div {
    left: -440px;
+   transform: translate(-300px, 0);
  }
 
- /* Create the Dots */
+ /* Create the Dots on the li timeline */
  #timeline ul li:after {
   content: '';
   position: absolute;
-  background: #fff;
+  background: inherit;
   /* Moves the left edge of the dot to the center of the vertical line (li) */
   left: 50%;
   bottom: 0;
@@ -111,10 +115,10 @@
   /* However much it was moved to the left above - move it back by that much to be central  */
   transform: translateX(-50%);
   /* So that the background can change color smoothly - color change done by JS */
-  transition: background 0.5s ease-in-out;
+  transition: background 1s ease-in-out;
  }
 
- /* Arrows Base */
+ /* Arrows Base  */
  #timeline ul li div:before {
   content: '';
   position: absolute;
@@ -141,9 +145,23 @@
    border-color: transparent transparent transparent var(--sec-color);
  }
 
+ /* Show Boxes and move in from the side  */
+ #timeline ul li.show div {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+ }
 
-/*  Media Queries --------- */
+ /* Change background color of dots when .show is added */
+ #timeline ul li.show:after {
+   background: #fff;
+ }
 
+
+
+/*  Media Queries ----------------- */
+
+/* Tablets */
 @media (max-width:900px) {
   #timeline ul li div {
     width: 250px;
@@ -157,7 +175,6 @@
 
 /* Smartphones */
 @media (max-width: 600px) {
-
 
   h1 {
    font-size: 2.2rem;
